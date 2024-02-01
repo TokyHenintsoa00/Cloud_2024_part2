@@ -158,6 +158,33 @@ public class TerrainModel {
        
     }
 
+
+    public void validation_terrain_admin(int id_utilisateur ,int id_parcelle , int id_terrain , int id_categorie , int id_type)
+    {
+        try 
+        {
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+            
+            
+                PreparedStatement pstmt = conn.prepareStatement("insert into validation_admin_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(?,?,?,?,?)");
+                // pstmt.setInt(1, wallet);
+                // pstmt.setInt(2, wallet);
+                pstmt.setInt(1, id_utilisateur);
+                pstmt.setInt(2, id_parcelle);
+                pstmt.setInt(3, id_terrain);
+                pstmt.setInt(4, id_categorie);
+                pstmt.setInt(5,id_type);
+                pstmt.executeUpdate();
+                System.out.println("insert validation sucessfully");
+            
+            
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+
     public void insert_parcelle_terrain(int id_utilisateur ,int id_parcelle , int id_terrain , int id_categorie , int id_type)
     {
         try 
@@ -183,6 +210,8 @@ public class TerrainModel {
             e.printStackTrace();
         }
     }
+
+
 
 
 

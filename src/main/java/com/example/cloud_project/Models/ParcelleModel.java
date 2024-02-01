@@ -492,11 +492,12 @@ public class ParcelleModel {
                     Conn c = new Conn();
                     Connection conn = c.getConnex();
                         
-                    String sql = "select * from v_information_parcelle_par_terrain where nom like"+nom+"";
-                    System.out.println(sql);
+                    String sql = "SELECT * FROM v_information_parcelle_par_terrain WHERE nom LIKE ?";                    System.out.println(sql);
                     PreparedStatement pstmt = conn.prepareStatement(sql);
-                   
+                    pstmt.setString(1, "%" + nom + "%");
+                    
                     ResultSet result = pstmt.executeQuery();
+                  
                     while (result.next()) 
                     {
                         

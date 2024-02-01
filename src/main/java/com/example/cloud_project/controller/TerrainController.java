@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -24,9 +25,10 @@ import jakarta.servlet.http.HttpSession;
 import com.example.cloud_project.Models.PersonneModel;
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/api")
 public class TerrainController {
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Terrain/listsTerrain")
+    @GetMapping("/listsTerrain")
     public ResponseEntity<TerrainModel[]> list_terrain()
     {
         TerrainModel t = new TerrainModel();
@@ -34,7 +36,7 @@ public class TerrainController {
         return ResponseEntity.ok().body(list_terrain);
     }
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/Terrain/insertTerrain")
+    @PostMapping("/insertTerrain")
     public ResponseEntity<TerrainModel> insertTerrain(@RequestBody TerrainModel terrain)
     {
         String description = terrain.getDescription();
@@ -45,10 +47,22 @@ public class TerrainController {
         return ResponseEntity.ok(terrain);
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/insert_validation_terrain_admin")
+    public ResponseEntity<TerrainModel> validation_terrain_admin(@RequestBody TerrainModel terrain,HttpSession session)    
+    {
+        Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
+        int id_parcelle = terrain.getId_parcelle();
+        int id_terrain = terrain.getId_terrain();
+        int id_categorie = terrain.getId_categorie();
+        int id_type = terrain.getId_type();
     
+       terrain.validation_terrain_admin(loggedInUserId,id_parcelle, id_terrain ,id_categorie,id_type);
+       return ResponseEntity.ok(terrain);
+    }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/Terrain/insert_parcelle_terrain")
+    @PostMapping("/insert_parcelle_terrain")
     public ResponseEntity<TerrainModel> insert_parcelle_terrain(@RequestBody TerrainModel terrain,HttpSession session)    
     {
         Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");

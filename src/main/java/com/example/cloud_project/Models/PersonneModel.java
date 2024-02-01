@@ -135,7 +135,7 @@ public class PersonneModel {
         return resultatList.toArray(new PersonneModel[resultatList.size()]);
     }
 
-    public void insert_user(String nom , String sexe , Date dtn , String email , String pwd)
+    public void insert_user_client(String nom , String sexe , Date dtn , String email , String pwd)
     {
         try 
         {
@@ -143,7 +143,7 @@ public class PersonneModel {
                 Connection conn = c.getConnex();
                
            
-                PreparedStatement pstmt = conn.prepareStatement("insert into utilisateurs(nom,sexe,dtn,email,pwd)values(?,?,?,?,?)");
+                PreparedStatement pstmt = conn.prepareStatement("insert into utilisateurs(nom,sexe,dtn,email,pwd,etat)values(?,?,?,?,?,0)");
 
                 pstmt.setString(1,nom);
                 pstmt.setString(2, sexe);
@@ -162,6 +162,36 @@ public class PersonneModel {
             e.printStackTrace();
         }
     }
+
+
+    public void insert_user_admin(String nom , String sexe , Date dtn , String email , String pwd)
+    {
+        try 
+        {
+                Conn c = new Conn();
+                Connection conn = c.getConnex();
+               
+           
+                PreparedStatement pstmt = conn.prepareStatement("insert into utilisateurs(nom,sexe,dtn,email,pwd,etat)values(?,?,?,?,?,1)");
+
+                pstmt.setString(1,nom);
+                pstmt.setString(2, sexe);
+                pstmt.setDate(3, dtn);
+                pstmt.setString(4, email);
+                pstmt.setString(5, pwd);
+
+                pstmt.executeUpdate();
+                System.out.println("insert personne sucessfully");
+
+                conn.close();
+            
+            
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+
 
     public PersonneModel select_user(String nom, String pwd) {
         PersonneModel p = null;

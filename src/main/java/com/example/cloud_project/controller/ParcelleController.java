@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -23,9 +24,10 @@ import jakarta.servlet.http.HttpSession;
 import com.example.cloud_project.Models.PersonneModel;
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/api")
 public class ParcelleController {
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/lists_parcelle")
+    @GetMapping("/lists_parcelle")
     public ResponseEntity<ParcelleModel[]> listParcelles()
     {
         ParcelleModel p = new ParcelleModel();
@@ -33,7 +35,7 @@ public class ParcelleController {
         return ResponseEntity.ok().body(list_parcelle);
     }
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/listParcelleterrain")
+    @GetMapping("/list_parcelleterrain")
     public ResponseEntity<ParcelleModel[]> listParcelleterrain()
     {
         ParcelleModel p = new ParcelleModel();
@@ -42,7 +44,7 @@ public class ParcelleController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/information_parcelle_par_terrain_utilisateur")
+    @GetMapping("/information_parcelle_par_terrain_utilisateur")
     public ResponseEntity<ParcelleModel[]> v_information_parcelle_par_terrain_par_utilisateur(
         @RequestParam int id_utlisateur,
         HttpSession session){
@@ -52,7 +54,7 @@ public class ParcelleController {
         return ResponseEntity.ok().body(stat);
     }
   @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/information_parcelle_par_terrain_parcelle")
+    @GetMapping("/information_parcelle_par_terrain_parcelle")
     public ResponseEntity<ParcelleModel[]> v_information_parcelle_par_terrain_par_parcelle(
         @RequestParam int id_parcelle){
         ParcelleModel p = new ParcelleModel();
@@ -61,7 +63,7 @@ public class ParcelleController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/information_parcelle_par_terrain_categorie")
+    @GetMapping("/information_parcelle_par_terrain_categorie")
     public ResponseEntity<ParcelleModel[]> v_information_parcelle_par_terrain_par_categorie(
         @RequestParam int id_categorie){
         ParcelleModel p = new ParcelleModel();
@@ -70,7 +72,7 @@ public class ParcelleController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/filtre_nom")
+    @GetMapping("/filtre_nom")
     public ResponseEntity<ParcelleModel[]> v_information_parcelle_par_terrain_par_nom(
         @RequestParam String nom){
         ParcelleModel p = new ParcelleModel();
@@ -80,7 +82,7 @@ public class ParcelleController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/filtre")
+    @GetMapping("/filtre_information_par_terrain")
     public ResponseEntity<ParcelleModel[]> filtre_v_information_parcelle_par_terrain(@RequestParam Integer id_categorie,@RequestParam Integer id_type){
         ParcelleModel p = new ParcelleModel();
         // ParcelleModel stat[]=p.v_information_parcelle_par_terrain_par_categorie(id_categorie);
@@ -114,7 +116,7 @@ public class ParcelleController {
     }
 
   @CrossOrigin(origins = "*")
-    @GetMapping("/api/Parcelle/stat_parcelle")
+    @GetMapping("/stat_parcelle")
     public ResponseEntity<ParcelleModel[]> stat_parcelle()
     {
         ParcelleModel p = new ParcelleModel();
@@ -123,7 +125,7 @@ public class ParcelleController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/Parcelle/insert_parcelle")
+    @PostMapping("/insert_parcelle")
     public ResponseEntity<ParcelleModel> insert_parcelle(@RequestBody ParcelleModel parcelle)
     {
         double dimension = parcelle.getDimension();

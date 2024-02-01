@@ -22,7 +22,7 @@ import com.example.cloud_project.Models.PersonneModel;
 @CrossOrigin(origins = "*")
 public class TypeController {
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Type/list_types")
+    @GetMapping("/list_types")
     public ResponseEntity<TypeModel[]> list_type_culture()
     {
         TypeModel p = new TypeModel();
@@ -30,7 +30,7 @@ public class TypeController {
         return ResponseEntity.ok().body(list_type_culture);
     }
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/Type/insert_types")
+    @PostMapping("/insert_types")
    
     public  ResponseEntity<TypeModel> insert_type_culture(@RequestBody TypeModel type)
     {

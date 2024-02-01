@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -24,9 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/api")
 public class PersonneController {
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Personne/listsPersonne")
+    @GetMapping("/listsPersonne")
     public ResponseEntity<PersonneModel[]> listPersonnes() {
         // Get the list of personnes
         PersonneModel p = new PersonneModel();
@@ -36,19 +38,34 @@ public class PersonneController {
         return ResponseEntity.ok().body(personnes);
     }
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/Personne/insertPersonne")  
-    public ResponseEntity<PersonneModel> insert_personne(@RequestBody PersonneModel personne){
+    @PostMapping("/insertPersonne_client")  
+    public ResponseEntity<PersonneModel> insert_personne_client(@RequestBody PersonneModel personne){
         
         String nom = personne.getNom();
         String sexe = personne.getSexe();
         Date dtn = personne.getDtn();
         String email = personne.getEmail();
         String pwd = personne.getPwd();
-        personne.insert_user(nom, sexe, dtn, email, pwd);
+        personne.insert_user_client(nom, sexe, dtn, email, pwd);
         return ResponseEntity.ok(personne);
     }
+
     @CrossOrigin(origins = "*")
-    @GetMapping("/api/Personne/selectPersonnewhere")
+    @PostMapping("/insertPersonne_admin")  
+    public ResponseEntity<PersonneModel> insert_personne_admin(@RequestBody PersonneModel personne){
+        
+        String nom = personne.getNom();
+        String sexe = personne.getSexe();
+        Date dtn = personne.getDtn();
+        String email = personne.getEmail();
+        String pwd = personne.getPwd();
+        personne.insert_user_client(nom, sexe, dtn, email, pwd);
+        return ResponseEntity.ok(personne);
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/selectPersonnewhere")
     public ResponseEntity<PersonneModel> listPersonnes(@RequestParam String email, @RequestParam String pwd) 
     {
         PersonneModel p = new PersonneModel();
@@ -56,7 +73,7 @@ public class PersonneController {
         return ResponseEntity.ok().body(p); 
     }
     @CrossOrigin(origins = "*")
-    @PutMapping("/api/Personne/updatePwd")
+    @PutMapping("/updatePwd")
     public ResponseEntity<PersonneModel> updatePwd(@RequestBody PersonneModel personne,HttpSession session) {
         // Met à jour le mot de passe
         String pwd = personne.getPwd();
@@ -67,41 +84,39 @@ public class PersonneController {
     }
 //
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/login")
-    public String login(@RequestBody PersonneModel personne, HttpSession session) {
-        
+    @PostMapping("/login")
+    public int login(@RequestBody PersonneModel personne, HttpSession session) {
+    
         String email = personne.getEmail();
         String pwd = personne.getPwd();
-
+    
         PersonneModel user = new PersonneModel();
         PersonneModel p = user.select_user(email, pwd);
-       
-        session.setAttribute("loggedInUserId", p.getId_utilisateur());
-        return "Connecté avec succès!";
+        if (p != null) {
+            session.setAttribute("loggedInUserId", p.getId_utilisateur());
+            return p.getId_utilisateur();
+        } 
+        else {
+            return -1; 
+        }
     }
+
+
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/api/logout")
-    public String logout(HttpSession session) {
-        // Supprimez l'id_utilisateur de la personne connectée de la session lors de la déconnexion
-        session.invalidate();
-        return "Déconnecté avec succès!";
+    @PostMapping("/logout")
+    public int logout(HttpServletRequest request) {
+        try {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.invalidate();
+                return 0;
+            } else {
+                return -1; 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -2; 
+        }
     }
-
-
-    // @GetMapping("/user")
-    // public String getLoggedInUser(HttpSession session) {
-    //     // Récupérez l'id_utilisateur de la personne connectée depuis la session
-    //     Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
-
-    //     if (loggedInUserId != null) {
-    //         // Utilisez l'id_utilisateur pour obtenir d'autres informations de l'utilisateur depuis la base de données
-    //         User loggedInUser = userRepository.findById(loggedInUserId).orElse(null);
-    //         return loggedInUser != null ? "Personne connectée : " + loggedInUser.getNom() : "Aucune personne connectée.";
-    //     } else {
-    //         return "Aucune personne connectée.";
-    //     }
-    // }
-
-
 }

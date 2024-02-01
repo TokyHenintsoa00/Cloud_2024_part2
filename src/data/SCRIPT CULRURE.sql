@@ -60,11 +60,12 @@ CREATE TABLE utilisateurs(
    dtn DATE,
    email VARCHAR(100),
    pwd VARCHAR(100),
+   etat int,
    PRIMARY KEY(id_utilisateur)
 );
 
-insert into utilisateurs(nom,sexe,dtn,email,pwd)values('Toky','M','2004-01-01','tokyramanalina@gmail.com','123');
-insert into utilisateurs(nom,sexe,dtn,email,pwd)values('Henintsoa','M','2004-01-01','henintsoa@gmail.com','123');
+insert into utilisateurs(nom,sexe,dtn,email,pwd,etat)values('Toky','M','2004-01-01','tokyramanalina@gmail.com','123',1);
+insert into utilisateurs(nom,sexe,dtn,email,pwd,etat)values('Henintsoa','M','2004-01-01','henintsoa@gmail.com','123',0);
 
 
 CREATE TABLE type(
@@ -119,6 +120,19 @@ CREATE TABLE parcelle_rendement(
    PRIMARY KEY(id_pr),
    FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
    FOREIGN KEY(id_rendement) REFERENCES Rendement(id_rendement)
+);
+
+create table validation_admin_terrain
+(
+   id_tp SERIAL,
+   id_utilisateur INTEGER,
+   id_parcelle INTEGER,
+   id_terrain INTEGER,
+   id_categorie integer references categorie_culture(id_categorie),
+   id_type integer references type(id_type),
+   PRIMARY KEY(id_TP),
+   FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
+   FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
 );
 
 
