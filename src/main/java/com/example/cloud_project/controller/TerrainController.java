@@ -48,7 +48,7 @@ public class TerrainController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/insert_validation_terrain_admin")
+    @PostMapping("/insert_validation_parcelle_terrain_admin")
     public ResponseEntity<TerrainModel> validation_terrain_admin(@RequestBody TerrainModel terrain,HttpSession session)    
     {
         Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
