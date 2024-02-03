@@ -35,6 +35,17 @@ public class TerrainController {
         TerrainModel list_terrain[]=t.select_terrain();
         return ResponseEntity.ok().body(list_terrain);
     }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/v_validation_admin_terrain")
+    public ResponseEntity<TerrainModel[]> v_validation_admin_terrain()
+    {
+        TerrainModel t = new TerrainModel();
+        TerrainModel list_terrain[]=t.select_validation_admin();
+        return ResponseEntity.ok().body(list_terrain);
+    }
+
     @CrossOrigin(origins = "*")
     @PostMapping("/insertTerrain")
     public ResponseEntity<TerrainModel> insertTerrain(@RequestBody TerrainModel terrain)

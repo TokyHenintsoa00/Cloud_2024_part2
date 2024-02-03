@@ -232,6 +232,43 @@ public class PersonneModel {
         return p;
     }
 
+    public PersonneModel info_user(int id_utilisateur) {
+        PersonneModel p = null;
+        
+        try {
+            
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+           
+            String sql = "select * from utilisateurs where id_utilisateur="+id_utilisateur+"";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+            ResultSet result = pstmt.executeQuery();
+        
+            if (result.next()) {
+                p = new PersonneModel();
+                p.setId_utilisateur(result.getInt(1));
+                p.setNom(result.getString(2));
+                p.setSexe(result.getString(3));
+                // Format dtn as a simple date
+                Date dtnDate = result.getDate(4);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedDtn = simpleDateFormat.format(dtnDate);
+                p.setFormatDtn(formattedDtn);
+                p.setEmail(result.getString(5));
+                p.setPwd(result.getString(6));
+            }
+
+            conn.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return p;
+    }
+
+
     public void update_pwd(String pwd , int id_utilisateur)
     {
         try 

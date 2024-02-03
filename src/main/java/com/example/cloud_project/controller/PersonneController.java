@@ -72,6 +72,17 @@ public class PersonneController {
         p = p.select_user(email, pwd);
         return ResponseEntity.ok().body(p); 
     }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/info_user")
+    public ResponseEntity<PersonneModel> information_utilisateur(@RequestParam int id_utilisateur) 
+    {
+        PersonneModel p = new PersonneModel();
+        p = p.info_user(id_utilisateur);
+        return ResponseEntity.ok().body(p); 
+    }
+
     @CrossOrigin(origins = "*")
     @PutMapping("/updatePwd")
     public ResponseEntity<PersonneModel> updatePwd(@RequestBody PersonneModel personne,HttpSession session) {

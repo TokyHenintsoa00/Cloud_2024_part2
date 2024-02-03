@@ -78,23 +78,6 @@ insert into type(nom_type)values('grain');
 insert into type(nom_type)values('grain1');
 insert into type(nom_type)values('grain2');
 
-CREATE TABLE Parcelle_par_terrain
-(
-   id_tp SERIAL,
-   id_utilisateur INTEGER,
-   id_parcelle INTEGER,
-   id_terrain INTEGER,
-   id_categorie integer references categorie_culture(id_categorie),
-   id_type integer references type(id_type),
-   PRIMARY KEY(id_TP),
-   FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
-   FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
-);
-
-insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(1,1,1,1,1);
-insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(1,1,1,2,1);
-insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(1,2,1,1,2);
-insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(2,1,2,1,2);
 
 
 
@@ -122,6 +105,33 @@ CREATE TABLE parcelle_rendement(
    FOREIGN KEY(id_rendement) REFERENCES Rendement(id_rendement)
 );
 
+
+insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(1,6,1,'2024-01-28');
+insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(1,10,2,'2024-01-28');
+insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(2,6,1,'2024-01-28');
+
+
+
+CREATE TABLE Parcelle_par_terrain
+(
+   id_tp SERIAL,
+   id_utilisateur INTEGER,
+   id_parcelle INTEGER,
+   id_terrain INTEGER,
+   id_categorie integer references categorie_culture(id_categorie),
+   id_type integer references type(id_type),
+   date timestamp(0),
+   PRIMARY KEY(id_TP),
+   FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
+   FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
+);
+
+insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(1,1,1,1,1,CURRENT_TIMESTAMP);
+insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(1,1,1,2,1,CURRENT_TIMESTAMP);
+insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(1,2,1,1,2,CURRENT_TIMESTAMP);
+insert into Parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(2,1,2,1,2,CURRENT_TIMESTAMP);
+
+
 create table validation_admin_terrain
 (
    id_tp SERIAL,
@@ -130,17 +140,26 @@ create table validation_admin_terrain
    id_terrain INTEGER,
    id_categorie integer references categorie_culture(id_categorie),
    id_type integer references type(id_type),
+   date timestamp(0),
    PRIMARY KEY(id_TP),
    FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
    FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
 );
 
-
-insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(1,6,1,'2024-01-28');
-insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(1,10,2,'2024-01-28');
-insert into parcelle_rendement(id_parcelle,id_rendement,id_terrain,daty)values(2,6,1,'2024-01-28');
+insert into validation_admin_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(1,1,2,1,1,CURRENT_TIMESTAMP);
 
 
-
-
- 
+create table demande_terrain
+(
+   id_tp SERIAL,
+   id_utilisateur INTEGER,
+   id_utilisateur_demande
+   id_parcelle INTEGER,
+   id_terrain INTEGER,
+   id_categorie integer references categorie_culture(id_categorie),
+   id_type integer references type(id_type),
+   date timestamp(0),
+   PRIMARY KEY(id_TP),
+   FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
+   FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
+);
