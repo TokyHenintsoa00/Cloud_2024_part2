@@ -47,8 +47,31 @@ select id_utilisateur,nom,sum(montant) as sum_montant
 from v_prix_rendement_reel group by id_utilisateur,nom;
 
 create or replace view stat_parcelle as 
-select (count(id_parcelle)*100/(select count(*) from v_information_parcelle_par_terrain)) as stat_parcelle,id_terrain  
+select (count(id_parcelle)*100/(select cou  nt(*) from v_information_parcelle_par_terrain)) as stat_parcelle,id_terrain  
 from v_information_parcelle_par_terrain group by id_terrain;
 
 
-
+create or replace view v_demande_terrain as
+SELECT
+    dem.id_tp,
+    u1.id_utilisateur,
+    u1.nom AS votre_nom,
+    dem.id_utilisateur_demande,
+    u2.nom AS nom_demande,
+    p.dimension,
+    p.nb_pieds,
+    t.description AS description_terrain,
+    t.longitude,
+    t.latitude,
+    t.photo,
+    c.nom_categorie,
+    type.nom_type,
+    dem.date
+FROM
+    demande_terrain dem
+JOIN utilisateurs u1 ON dem.id_utilisateur = u1.id_utilisateur
+JOIN utilisateurs u2 ON dem.id_utilisateur_demande = u2.id_utilisateur
+JOIN parcelle p ON dem.id_parcelle = p.id_parcelle
+JOIN terrain t ON dem.id_terrain = t.id_terrain
+JOIN categorie_culture c ON dem.id_categorie = c.id_categorie
+JOIN type ON dem.id_type = type.id_type;

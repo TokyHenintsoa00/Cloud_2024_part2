@@ -31,6 +31,32 @@ public class TerrainModel {
     double prix_parcelle;
     Timestamp date;
     String date_format;
+    int id_user_demande;
+    String nom_user_demande;
+    String img;
+
+    public String getImg() {
+        return img;
+    }
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getNom_user_demande() {
+        return nom_user_demande;
+    }
+    public void setNom_user_demande(String nom_user_demande) {
+        this.nom_user_demande = nom_user_demande;
+    }
+
+    public int getId_user_demande() {
+        return id_user_demande;
+    }
+
+    public void setId_user_demande(int id_user_demande) {
+        this.id_user_demande = id_user_demande;
+    }
+
 
     public String getDate_format() {
         return date_format;
@@ -657,6 +683,7 @@ public class TerrainModel {
                     
                     preparedStatement.executeUpdate();
                     System.out.println("insert terrain successfully");
+                    conn.close();
                 }
                 conn.close();
             
@@ -666,6 +693,31 @@ public class TerrainModel {
         }
        
     }
+
+    public void insert_parcelle_terrain(int id_utilisateur ,int id_parcelle , int id_terrain , int id_categorie , int id_type)
+    {
+        try 
+        {
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+            
+            
+                PreparedStatement pstmt = conn.prepareStatement("insert into parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(?,?,?,?,?)");
+                pstmt.setInt(1, id_utilisateur);
+                pstmt.setInt(2, id_parcelle);
+                pstmt.setInt(3, id_terrain);
+                pstmt.setInt(4, id_categorie);
+                pstmt.setInt(5,id_type);
+                pstmt.executeUpdate();
+                System.out.println("insert parcelle_terrain sucessfully");
+                conn.close();
+            
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void validation_terrain_admin(int id_utilisateur ,int id_parcelle , int id_terrain , int id_categorie , int id_type)
@@ -677,8 +729,6 @@ public class TerrainModel {
             
             
                 PreparedStatement pstmt = conn.prepareStatement("insert into validation_admin_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(?,?,?,?,?,CURRENT_TIMESTAMP)");
-                // pstmt.setInt(1, wallet);
-                // pstmt.setInt(2, wallet);
                 pstmt.setInt(1, id_utilisateur);
                 pstmt.setInt(2, id_parcelle);
                 pstmt.setInt(3, id_terrain);
@@ -686,7 +736,7 @@ public class TerrainModel {
                 pstmt.setInt(5,id_type);
                 pstmt.executeUpdate();
                 System.out.println("insert validation sucessfully");
-            
+                conn.close();
             
         }catch (Exception e) {
             // TODO: handle exception
@@ -709,11 +759,6 @@ public class TerrainModel {
 
                 while (result.next()) 
                 {
-                    // int id_terrain = result.getInt(1);
-                    // String description = result.getString(2);
-                    // String latitude = result.getString(3);
-                    // String longitude = result.getString(4);
-                    // String photo= result.getString(5);
                     int id_tp = result.getInt(1);
                     int id_user = result.getInt(2);
                     String nom = result.getString(3);
@@ -748,9 +793,78 @@ public class TerrainModel {
         return lists.toArray(new TerrainModel[lists.size()]);
     }
 
-    
 
-    public void insert_parcelle_terrain(int id_utilisateur ,int id_parcelle , int id_terrain , int id_categorie , int id_type)
+
+
+    public TerrainModel[] suggestion_terrain(int id_utilisateur) {
+        List<TerrainModel> resultatList = new ArrayList<>();
+        
+        try {
+            
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+           
+            String sql = "SELECT * FROM v_information_Parcelle_par_terrain WHERE id_utilisateur <> ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+            pstmt.setInt(1, id_utilisateur);
+         
+        
+            ResultSet result = pstmt.executeQuery();
+        
+            while (result.next()) {
+                int id_tp = result.getInt(1);
+                int id_user = result.getInt(2);
+                String nom = result.getString(3);
+                int id_parcelle = result.getInt(4);
+                int id_terrain = result.getInt(5);
+                int id_categorie = result.getInt(6);
+                String nom_categorie = result.getString(7);
+                int id_type = result.getInt(8);
+                String nom_tpye = result.getString(9);
+                int rendement_par_pieds = result.getInt(10);
+                double prix_unitaire = result.getDouble(11);
+                double dimension = result.getDouble(12);
+                int nb_pieds = result.getInt(13);
+                double prix_parcelle = result.getDouble(14);
+                Timestamp date = result.getTimestamp(15);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String formattedDate = dateFormat.format(date);
+
+                TerrainModel terrain = new TerrainModel();
+                terrain.setId_tp(id_tp);
+                terrain.setId_utilisateur(id_user);
+                terrain.setNom(nom);
+                terrain.setId_parcelle(id_parcelle);
+                terrain.setId_terrain(id_terrain);
+                terrain.setId_categorie(id_categorie);
+                terrain.setNom_categorie(nom_categorie);
+                terrain.setId_type(id_type);
+                terrain.setNom_type(nom_tpye);
+                terrain.setRendement_par_pieds(rendement_par_pieds);
+                terrain.setPrix_unitaire(prix_unitaire);
+                terrain.setDimension(dimension);
+                terrain.setNb_pieds(nb_pieds);
+                terrain.setPrix_parcelle(prix_parcelle);
+                terrain.setDate_format(formattedDate);
+
+                resultatList.add(terrain);
+            }
+
+            result.close();
+            pstmt.close();
+            conn.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return resultatList.toArray(new TerrainModel[resultatList.size()]);
+    }
+
+
+    public void demande_terrain(int id_utilisateur ,int id_utilisateur_demande,int id_parcelle , int id_terrain , int id_categorie , int id_type)
     {
         try 
         {
@@ -758,25 +872,89 @@ public class TerrainModel {
             Connection conn = c.getConnex();
             
             
-                PreparedStatement pstmt = conn.prepareStatement("insert into parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(?,?,?,?,?)");
-                // pstmt.setInt(1, wallet);
-                // pstmt.setInt(2, wallet);
+                PreparedStatement pstmt = conn.prepareStatement("insert into demande_terrain(id_utilisateur,id_utilisateur_demande,id_parcelle,id_terrain,id_categorie,id_type,date)values(?,?,?,?,?,?,CURRENT_TIMESTAMP)");
                 pstmt.setInt(1, id_utilisateur);
-                pstmt.setInt(2, id_parcelle);
-                pstmt.setInt(3, id_terrain);
-                pstmt.setInt(4, id_categorie);
-                pstmt.setInt(5,id_type);
+                pstmt.setInt(2, id_utilisateur_demande);
+                pstmt.setInt(3, id_parcelle);
+                pstmt.setInt(4, id_terrain);
+                pstmt.setInt(5, id_categorie);
+                pstmt.setInt(6,id_type);
                 pstmt.executeUpdate();
-                System.out.println("insert parcelle_terrain sucessfully");
-            
+                System.out.println("demande sucessfully");
+                conn.close();
             
         }catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
+    } 
+
+
+
+    public TerrainModel[] v_demande_terrain(int id_utilisateur) {
+        List<TerrainModel> resultatList = new ArrayList<>();
+        
+        try {
+            
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+           
+            String sql = "SELECT * FROM v_demande_terrain WHERE id_utilisateur = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+            pstmt.setInt(1, id_utilisateur);
+         
+        
+            ResultSet result = pstmt.executeQuery();
+        
+            while (result.next()) {
+                int id_tp = result.getInt(1);
+                int id_user = result.getInt(2);
+                String nom = result.getString(3);
+                int id_user_demande = result.getInt(4);
+                String nom_demande = result.getString(5);
+                double dimension = result.getDouble(6);
+                int nb_pieds = result.getInt(7);
+                String description_terrain = result.getString(8);
+                String longitude = result.getString(9);
+                String latitude = result.getString(10);
+                String img =result.getString(11);
+                String nom_Categorie = result.getString(12);
+                String nom_type = result.getString(13);
+                Timestamp date = result.getTimestamp(14);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String formattedDate = dateFormat.format(date);
+
+                TerrainModel terrain = new TerrainModel();
+                terrain.setId_tp(id_tp);
+                terrain.setId_utilisateur(id_user);
+                terrain.setNom(nom);
+                terrain.setId_user_demande(id_user_demande);
+                terrain.setNom_user_demande(nom_demande);
+                terrain.setDimension(dimension);
+                terrain.setNb_pieds(nb_pieds);
+                terrain.setDescription(description_terrain);
+                terrain.setLongitude(longitude);
+                terrain.setLatitude(latitude);
+                terrain.setImg(img);
+                terrain.setNom_categorie(nom_Categorie);
+                terrain.setNom_type(nom_type);
+                terrain.setDate_format(formattedDate);
+
+                resultatList.add(terrain);
+            }
+
+            result.close();
+            pstmt.close();
+            conn.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return resultatList.toArray(new TerrainModel[resultatList.size()]);
     }
-
-
 
 
 

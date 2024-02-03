@@ -152,8 +152,8 @@ insert into validation_admin_terrain(id_utilisateur,id_parcelle,id_terrain,id_ca
 create table demande_terrain
 (
    id_tp SERIAL,
-   id_utilisateur INTEGER,
-   id_utilisateur_demande
+   id_utilisateur INTEGER references utilisateurs(id_utilisateur),
+   id_utilisateur_demande integer references utilisateurs(id_utilisateur),
    id_parcelle INTEGER,
    id_terrain INTEGER,
    id_categorie integer references categorie_culture(id_categorie),
@@ -163,3 +163,6 @@ create table demande_terrain
    FOREIGN KEY(id_parcelle) REFERENCES Parcelle(id_parcelle),
    FOREIGN KEY(id_terrain) REFERENCES Terrain(id_terrain)
 );
+
+
+insert into demande_terrain(id_utilisateur,id_utilisateur_demande,id_parcelle,id_terrain,id_categorie,id_type,date)values(2,1,1,2,1,2,CURRENT_TIMESTAMP);
