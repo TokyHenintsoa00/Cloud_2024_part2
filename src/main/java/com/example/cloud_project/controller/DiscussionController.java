@@ -1,6 +1,9 @@
 package com.example.cloud_project.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.cloud_project.Models.DiscussionModel;
 import com.example.cloud_project.Models.DiscussionRepositoryModel;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
@@ -27,28 +32,31 @@ public class DiscussionController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/send_message")
-    public DiscussionModel sendMessage(@RequestBody DiscussionModel discusison)
+    public DiscussionModel sendMessage(@RequestBody DiscussionModel discusison,HttpSession session)
     {
-        int idSender=discusison.getIdSender();
+        Integer idSender = (Integer) session.getAttribute("loggedInUserId");
         int idReceiver=discusison.getIdReceiver();
-        String nom_sender = discusison.getNom_sender();
-        String nom_receiver= discusison.getNom_receiver();
         String message_sender = discusison.getMessage_sender();
-        DiscussionModel message = new DiscussionModel(idSender,idReceiver,nom_sender,nom_receiver,message_sender);
+        LocalDateTime currentTime = LocalDateTime.now();
+        DiscussionModel message = new DiscussionModel(idSender,idReceiver,message_sender,currentTime);
         System.out.println("message");
         return discussionRepository.save(message);
     }
 
      @CrossOrigin(origins = "*")
     @GetMapping("/get_message")
-    public ResponseEntity<List<DiscussionModel>> listCategories(@RequestParam int idSender , @RequestParam int idReceiver)
+    public ResponseEntity<List<DiscussionModel>> listCategories(@RequestParam int idReceiver , HttpSession session)
     {
-        List<DiscussionModel> sentDiscussion = discussionRepository.findByIdSenderAndIdReceiver(idSender, idReceiver);
-        List<DiscussionModel> getDiscussion = discussionRepository.findByIdSenderAndIdReceiver(idReceiver, idSender);
+        Integer idSender = (Integer) session.getAttribute("loggedInUserId");
+        List<DiscussionModel> sentDiscussion = discussionRepository.findByIdSenderAndIdReceiverOrderByDateAsc(idSender, idReceiver);
+        List<DiscussionModel> getDiscussion = discussionRepository.findByIdSenderAndIdReceiverOrderByDateAsc(idReceiver, idSender);
 
         List<DiscussionModel> allDiscussion= new ArrayList<>();
         allDiscussion.addAll(sentDiscussion);
         allDiscussion.addAll(getDiscussion);
+        Collections.sort(allDiscussion, Comparator.comparing(DiscussionModel::getDate));
+
+        System.out.println("getMessage");
         return ResponseEntity.ok().body(allDiscussion);
     }
 }

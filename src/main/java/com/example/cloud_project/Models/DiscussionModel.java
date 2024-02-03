@@ -1,8 +1,10 @@
 package com.example.cloud_project.Models;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.sql.Time;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection="Discussion")
 public class DiscussionModel {
@@ -13,6 +15,9 @@ public class DiscussionModel {
     String nom_sender;
     String nom_receiver;
     String message_sender;
+
+
+    LocalDateTime  date;
     public int getIdSender() {
         return idSender;
     }
@@ -44,12 +49,28 @@ public class DiscussionModel {
         this.message_sender = message_sender;
     }
 
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    
     public DiscussionModel(int idSender, int idReceiver, String nom_sender, String nom_receiver,String message_sender) {
     this.idSender = idSender;
     this.idReceiver = idReceiver;
     this.nom_sender = nom_sender;
     this.nom_receiver = nom_receiver;
     this.message_sender = message_sender;
+    }
+
+    public DiscussionModel(int idSender, int idReceiver, String message_sender,LocalDateTime  date) {
+        this.idSender = idSender;
+        this.idReceiver = idReceiver;
+        this.message_sender = message_sender;
+        this.date = date;
     }
 
     public DiscussionModel() {

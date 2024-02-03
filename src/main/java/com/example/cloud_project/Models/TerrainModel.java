@@ -7,8 +7,6 @@ import java.util.List;
 
 public class TerrainModel {
     
-    
-
     int id_terrain;
     String description;
     String latitude;
@@ -955,8 +953,4 @@ public class TerrainModel {
         
         return resultatList.toArray(new TerrainModel[resultatList.size()]);
     }
-
-
-
-
 }
