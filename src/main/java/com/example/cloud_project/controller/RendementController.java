@@ -22,7 +22,7 @@ public class RendementController {
     
     @CrossOrigin(origins = "*")
     @GetMapping("/v_prix_rendement_prevision")
-    public ResponseEntity<RendementModel[]> select_v_parcelle_where(@RequestParam("id_utilisateur") int id_utilisateur,HttpSession session)
+    public ResponseEntity<RendementModel[]> select_v_parcelle_where(HttpSession session)
     {
         Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
         RendementModel r = new RendementModel();
@@ -31,7 +31,7 @@ public class RendementController {
     }
     @CrossOrigin(origins = "*")
     @GetMapping("/v_sum_prix_rendement_prevision")
-    public ResponseEntity<RendementModel[]> v_sum_prix_rendement_prevision(@RequestParam("id_utilisateur") int id_utilisateur,HttpSession session)
+    public ResponseEntity<RendementModel[]> v_sum_prix_rendement_prevision(HttpSession session)
     {
         Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
         RendementModel r = new RendementModel();
@@ -41,11 +41,11 @@ public class RendementController {
     
     @CrossOrigin(origins = "*")
     @GetMapping("/v_rendement_par_qte")
-    public ResponseEntity<RendementModel[]> v_rendement_par_qte(@RequestParam("id_utilisateur") int id_utilisateur,HttpSession session)
+    public ResponseEntity<RendementModel[]> v_rendement_par_qte(HttpSession session)
     {
         Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
         RendementModel r = new RendementModel();
-        RendementModel rend_Model[] = r.v_sum_prix_rendement_prevision(loggedInUserId);
+        RendementModel rend_Model[] = r.v_rendement_par_qte(loggedInUserId);
         return ResponseEntity.ok().body(rend_Model);
     }
 

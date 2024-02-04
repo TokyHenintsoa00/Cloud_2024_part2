@@ -53,11 +53,11 @@ public class TerrainController {
     public ResponseEntity<TerrainModel> demandeterrain(@RequestBody TerrainModel terrain,HttpSession session)
     {
         int id_utilisateur = terrain.getId_utilisateur();
+        Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
         int id_parcelle = terrain.getId_parcelle();
         int id_terrain = terrain.getId_terrain();
         int id_categorie = terrain.getId_categorie();
         int id_type = terrain.getId_type();
-        Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
         terrain.demande_terrain(id_utilisateur,loggedInUserId, id_parcelle, id_terrain, id_categorie,id_type);
         return ResponseEntity.ok(terrain);
     }
@@ -72,7 +72,19 @@ public class TerrainController {
         return ResponseEntity.ok().body(list_terrain);
     }
 
-
+    @CrossOrigin(origins = "*")
+    @PostMapping("/insert_validation_parcelle_terrain_admin")
+    public ResponseEntity<TerrainModel> validation_terrain_admin(@RequestBody TerrainModel terrain,HttpSession session)    
+    {
+        Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
+        int id_parcelle = terrain.getId_parcelle();
+        int id_terrain = terrain.getId_terrain();
+        int id_categorie = terrain.getId_categorie();
+        int id_type = terrain.getId_type();
+    
+       terrain.validation_terrain_admin(loggedInUserId,id_parcelle, id_terrain ,id_categorie,id_type);
+       return ResponseEntity.ok(terrain);
+    }
 
     @CrossOrigin(origins = "*")
     @GetMapping("/v_validation_admin_terrain")
@@ -178,19 +190,7 @@ public class TerrainController {
         return ResponseEntity.ok(terrain);
     }
 
-    @CrossOrigin(origins = "*")
-    @PostMapping("/insert_validation_parcelle_terrain_admin")
-    public ResponseEntity<TerrainModel> validation_terrain_admin(@RequestBody TerrainModel terrain,HttpSession session)    
-    {
-        Integer loggedInUserId = (Integer) session.getAttribute("loggedInUserId");
-        int id_parcelle = terrain.getId_parcelle();
-        int id_terrain = terrain.getId_terrain();
-        int id_categorie = terrain.getId_categorie();
-        int id_type = terrain.getId_type();
     
-       terrain.validation_terrain_admin(loggedInUserId,id_parcelle, id_terrain ,id_categorie,id_type);
-       return ResponseEntity.ok(terrain);
-    }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/insert_parcelle_terrain")

@@ -59,7 +59,7 @@ public class PersonneController {
         Date dtn = personne.getDtn();
         String email = personne.getEmail();
         String pwd = personne.getPwd();
-        personne.insert_user_client(nom, sexe, dtn, email, pwd);
+        personne.insert_user_admin(nom, sexe, dtn, email, pwd);
         return ResponseEntity.ok(personne);
     }
 

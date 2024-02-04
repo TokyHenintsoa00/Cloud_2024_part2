@@ -700,7 +700,7 @@ public class TerrainModel {
             Connection conn = c.getConnex();
             
             
-                PreparedStatement pstmt = conn.prepareStatement("insert into parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type)values(?,?,?,?,?)");
+                PreparedStatement pstmt = conn.prepareStatement("insert into parcelle_par_terrain(id_utilisateur,id_parcelle,id_terrain,id_categorie,id_type,date)values(?,?,?,?,?,CURRENT_TIMESTAMP)");
                 pstmt.setInt(1, id_utilisateur);
                 pstmt.setInt(2, id_parcelle);
                 pstmt.setInt(3, id_terrain);

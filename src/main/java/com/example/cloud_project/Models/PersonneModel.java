@@ -14,6 +14,14 @@ public class PersonneModel {
     String pwd;
     String formatDtn;
     String email;
+    int etat;
+
+    public int getEtat() {
+        return etat;
+    }
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
 
 
     public int getId_utilisateur() {
@@ -81,7 +89,7 @@ public class PersonneModel {
     public PersonneModel() {
     }
 
-    public PersonneModel(int id_utilisateur , String nom, String sexe, String formatDtn, String email, String pwd) {
+    public PersonneModel(int id_utilisateur , String nom, String sexe, String formatDtn, String email, String pwd , int etat) {
         
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;
@@ -89,7 +97,7 @@ public class PersonneModel {
         this.formatDtn = formatDtn;
         this.email = email;
         this.pwd = pwd;
-       
+        this.etat = etat;
        
     }
 
@@ -116,8 +124,9 @@ public class PersonneModel {
                     // Format the date using SimpleDateFormat
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     String formattedDtn = sdf.format(dtn);
+                    int etat = result.getInt(7);
 
-                    PersonneModel p = new PersonneModel(id_utilisateur,nom,sexe,formattedDtn,email,pwd);
+                    PersonneModel p = new PersonneModel(id_utilisateur,nom,sexe,formattedDtn,email,pwd,etat);
                     resultatList.add(p);
                 }
             
