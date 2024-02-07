@@ -825,6 +825,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "update terrain",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"huhu\",\r\n    \"photo\":\"popo.png\",\r\n    \"id_terrain\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/updateTerrain",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"updateTerrain"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -867,7 +896,28 @@
 					"name": "insert type",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom_type\":\"my new type\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/insert_types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"insert_types"
+							]
+						}
 					},
 					"response": []
 				}
