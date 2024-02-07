@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,7 +63,7 @@ public class TerrainController {
         return ResponseEntity.ok(terrain);
     }
 
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*") 
     @GetMapping("/list_demande")
     public ResponseEntity<TerrainModel[]> v_demande_terrain(HttpSession session)
     {
@@ -206,6 +207,16 @@ public class TerrainController {
        return ResponseEntity.ok(terrain);
     }
 
+    @CrossOrigin(origins = "*")
+    @PutMapping("/updateTerrain")
+    public ResponseEntity<TerrainModel> updatePwd(@RequestBody TerrainModel terrain,HttpSession session) {
+        // Met à jour le mot de passe
+        String description = terrain.getDescription();
+        String photo = terrain.getPhoto();
+        int id_terrain = terrain.getId_terrain();
+        terrain.update_terrain(description, photo,id_terrain);
+        return new ResponseEntity<>(HttpStatus.OK); 
+    }
 
    
 }

@@ -953,4 +953,31 @@ public class TerrainModel {
         
         return resultatList.toArray(new TerrainModel[resultatList.size()]);
     }
+
+
+
+    public void update_terrain(String description , String photo , int id_terrain)
+    {
+        try 
+        {
+            
+            Conn c = new Conn();
+            Connection conn = c.getConnex();
+            
+            PreparedStatement pstmt = conn.prepareStatement("update terrain set description = ? , photo = ? where id_terrain = ?");
+                
+               
+            pstmt.setString(1,description);
+            pstmt.setString(2, photo);
+            pstmt.setInt(3, id_terrain);
+
+            pstmt.executeUpdate();
+            System.out.println("update pwd sucessfully");
+            conn.close();
+            
+        }catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } 
+    }
 }
