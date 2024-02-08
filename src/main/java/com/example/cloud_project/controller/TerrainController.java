@@ -209,7 +209,7 @@ public class TerrainController {
 
     @CrossOrigin(origins = "*")
     @PutMapping("/updateTerrain")
-    public ResponseEntity<TerrainModel> updatePwd(@RequestBody TerrainModel terrain,HttpSession session) {
+    public ResponseEntity<TerrainModel> updatePwd(@RequestBody TerrainModel terrain) {
         // Met à jour le mot de passe
         String description = terrain.getDescription();
         String photo = terrain.getPhoto();
