@@ -208,7 +208,7 @@ public class TerrainController {
     }
 
     @CrossOrigin(origins = "*")
-    @PutMapping("/updateTerrain")
+    @PostMapping("/updateTerrain")
     public ResponseEntity<TerrainModel> updatePwd(@RequestBody TerrainModel terrain) {
         // Met à jour le mot de passe
         String description = terrain.getDescription();
