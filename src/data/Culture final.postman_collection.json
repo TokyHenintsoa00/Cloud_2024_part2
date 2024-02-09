@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "f8c9bc24-2083-4d47-bc5a-8c87af4e3fd5",
-		"name": "Culture final local",
+		"_postman_id": "393ee251-b412-42ef-a0ec-26bd2a485d9a",
+		"name": "Culture final",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30870957"
 	},
@@ -15,12 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/list_categorie",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/list_categorie",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"list_categorie"
@@ -44,12 +46,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insert_categorie",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insert_categorie",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insert_categorie"
@@ -73,12 +77,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/update_categorie",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/update_categorie",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"update_categorie"
@@ -98,12 +104,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/get_message?idReceiver=2",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/get_message?idReceiver=2",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"get_message"
@@ -133,12 +141,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/send_message",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/send_message",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"send_message"
@@ -158,12 +168,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/lists_parcelle",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/lists_parcelle",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"lists_parcelle"
@@ -178,12 +190,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/stat_parcelle",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/stat_parcelle",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"stat_parcelle"
@@ -207,12 +221,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insert_parcelle",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insert_parcelle",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insert_parcelle"
@@ -232,12 +248,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/listsPersonne",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/listsPersonne",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"listsPersonne"
@@ -261,12 +279,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insertPersonne_client",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insertPersonne_client",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insertPersonne_client"
@@ -290,12 +310,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insertPersonne_admin",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insertPersonne_admin",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insertPersonne_admin"
@@ -310,12 +332,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/selectPersonnewhere?email=tokyramanalina@gmail.com&pwd=123",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/selectPersonnewhere?email=tokyramanalina@gmail.com&pwd=123",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"selectPersonnewhere"
@@ -340,12 +364,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/info_user?id_utilisateur=4",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/info_user?id_utilisateur=4",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"info_user"
@@ -361,7 +387,7 @@
 					"response": []
 				},
 				{
-					"name": "update pwd",
+					"name": "update pwd Copy",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -375,12 +401,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/updatePwd",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/updatePwd",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"updatePwd"
@@ -404,12 +432,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/login",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/login",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"login"
@@ -424,12 +454,14 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/logout",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/logout",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"logout"
@@ -449,12 +481,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v_prix_rendement_prevision",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/v_prix_rendement_prevision",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v_prix_rendement_prevision"
@@ -469,12 +503,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v_sum_prix_rendement_prevision",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/v_sum_prix_rendement_prevision",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v_sum_prix_rendement_prevision"
@@ -489,12 +525,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v_rendement_par_qte",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/v_rendement_par_qte",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v_rendement_par_qte"
@@ -514,12 +552,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/listsTerrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/listsTerrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"listsTerrain"
@@ -534,12 +574,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/suggestion_terrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/suggestion_terrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"suggestion_terrain"
@@ -563,12 +605,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/demande_terrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/demande_terrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"demande_terrain"
@@ -583,12 +627,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/list_demande",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/list_demande",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"list_demande"
@@ -612,12 +658,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insert_validation_parcelle_terrain_admin",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insert_validation_parcelle_terrain_admin",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insert_validation_parcelle_terrain_admin"
@@ -632,12 +680,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v_validation_admin_terrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/v_validation_admin_terrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"v_validation_admin_terrain"
@@ -652,12 +702,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/list_parcelleterrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/list_parcelleterrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"list_parcelleterrain"
@@ -672,12 +724,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/information_parcelle_par_terrain_utilisateur",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/information_parcelle_par_terrain_utilisateur",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"information_parcelle_par_terrain_utilisateur"
@@ -692,12 +746,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/information_parcelle_par_terrain_parcelle?id_parcelle=1",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/information_parcelle_par_terrain_parcelle?id_parcelle=1",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"information_parcelle_par_terrain_parcelle"
@@ -718,12 +774,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/filtre_nom?nom=Henintsoa",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/filtre_nom?nom=Henintsoa",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"filtre_nom"
@@ -744,12 +802,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/filtre_information_par_terrain?id_categorie=0&id_type=0",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/filtre_information_par_terrain?id_categorie=0&id_type=0",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"filtre_information_par_terrain"
@@ -783,12 +843,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insertTerrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insertTerrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insertTerrain"
@@ -812,12 +874,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insert_parcelle_terrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insert_parcelle_terrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insert_parcelle_terrain"
@@ -841,12 +905,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/updateTerrain",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/updateTerrain",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"updateTerrain"
@@ -878,12 +944,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/list_types",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/list_types",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"list_types"
@@ -907,12 +975,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/insert_types",
-							"protocol": "http",
+							"raw": "https://cloud2024part2-production.up.railway.app/api/insert_types",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"cloud2024part2-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"insert_types"
