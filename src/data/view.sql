@@ -15,7 +15,7 @@ join parcelle on validation_admin_terrain.id_parcelle = parcelle.id_parcelle
 join utilisateurs on validation_admin_terrain.id_utilisateur=utilisateurs.id_utilisateur
 join type on validation_admin_terrain.id_type=type.id_type;
 
-
+//
 create or replace view demande_terrain as
 select id_tp,utilisateurs.id_utilisateur,utilisateurs.nom,parcelle.id_parcelle,id_terrain,categorie_culture.id_categorie,categorie_culture.nom_categorie,type.id_type,type.nom_type,rendement_par_pieds,prix_unitaire,dimension,nb_pieds,prix as prix_parcelle,date 
 from demande_terrain 
